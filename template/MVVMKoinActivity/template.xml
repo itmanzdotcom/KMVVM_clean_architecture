@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="MVVM-Koin Activity"
+    minApi="21"
+    minBuildApi="21"
+    description="Creates a MVVM-Koin Activity">
+
+    <category value="Activity" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="featureName"
+        name="Feature Name"
+        type="string"
+        constraints="unique|nonempty"
+        default="home"
+        help="The name of the Activity class to create" />
+		
+	<parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/tab1">
+
+    <!-- TODO STEP 1 -->
+    <fragment
+        android:id="@+id/tab1"
+        android:name="com.cashless.self_order.screen.user.UserFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_user">
+
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/tab2"
+           />
+
+    </fragment>
+
+    <!-- TODO STEP 2-->
+    <fragment
+        android:id="@+id/tab2"
+        android:name="com.cashless.self_order.screen.blank.BlankFragment"
+        tools:layout="@layout/fragment_blank">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer"/>
+        <action
+            android:id="@+id/next_action"
+            app:popUpTo="@id/tab1"/>
+    </fragment>
+
+    <!-- TODO STEP 3 -->
+    <fragment
+        android:id="@+id/tab3"
+        android:name="com.cashless.self_order.screen.userFavorite.UserFavoriteFragment"
+        tools:layout="@layout/fragment_user_favorite">
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="2"
+            app:argType="integer"/>
+        <action
+            android:id="@+id/next_action"
+            app:popUpTo="@id/tab1"/>
+    </fragment>
+
+</navigation>

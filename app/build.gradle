@@ -1,0 +1,249 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+apply from: '../autodimension.gradle'
+
+def APP_ID = "com.cashless.selforder"
+
+android {
+
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+    applicationId "${APP_ID}"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    vectorDrawables.useSupportLibrary = true
+    multiDexEnabled true
+  }
+
+  signingConfigs {
+    release {
+      storeFile file("../release_info/keystore")
+      storePassword "cashless.selforder"
+      keyAlias "selforder"
+      keyPassword "cashless.selforder"
+    }
+  }
+
+
+  flavorDimensions "default"
+  productFlavors {
+    env {
+      // No-opt
+    }
+  }
+
+  buildTypes {
+
+    debug {
+      applicationIdSuffix = ".dev"
+      ext.enableCrashlytics = false
+
+      resValue "string", "app_name", "[Dev] Self Order"
+      // URL CONFIGS
+      buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+
+      // Pusher Configs
+      buildConfigField("String", "PUSHER_APP_ID", "\"691428\"")
+      buildConfigField("String", "PUSHER_CLUSTER", "\"ap3\"")
+      buildConfigField("String", "PUSHER_API_KEY", "\"70313b1bbd88a2cec02b\"")
+      buildConfigField("String", "PUSHER_SECRET_KEY", "\"60c6d75220b86d48831b\"")
+
+      //Onesignal
+      buildConfigField("String", "ONESIGNAL_KEY", "\"3246d21f-a96f-4d50-8832-c5e98fe4f546\"")
+
+      applicationVariants.all { variant -> appendVersionNameVersionCode(variant) }
+    }
+
+    staging {
+      applicationIdSuffix = ".stg"
+
+      resValue "string", "app_name", "[Stg] Self Order"
+      // URL CONFIGS
+      buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+
+      // Pusher Configs
+      buildConfigField("String", "PUSHER_APP_ID", "\"691428\"")
+      buildConfigField("String", "PUSHER_CLUSTER", "\"ap3\"")
+      buildConfigField("String", "PUSHER_API_KEY", "\"70313b1bbd88a2cec02b\"")
+      buildConfigField("String", "PUSHER_SECRET_KEY", "\"60c6d75220b86d48831b\"")
+
+      //Onesignal
+      buildConfigField("String", "ONESIGNAL_KEY", "\"3246d21f-a96f-4d50-8832-c5e98fe4f546\"")
+
+      applicationVariants.all { variant -> appendVersionNameVersionCode(variant) }
+
+    }
+
+    release {
+      resValue "string", "app_name", "Self Order"
+      // URL CONFIGS
+      buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+
+      // Pusher Configs
+      buildConfigField("String", "PUSHER_APP_ID", "\"691428\"")
+      buildConfigField("String", "PUSHER_CLUSTER", "\"ap3\"")
+      buildConfigField("String", "PUSHER_API_KEY", "\"70313b1bbd88a2cec02b\"")
+      buildConfigField("String", "PUSHER_SECRET_KEY", "\"60c6d75220b86d48831b\"")
+
+      //Onesignal
+      buildConfigField("String", "ONESIGNAL_KEY", "\"3246d21f-a96f-4d50-8832-c5e98fe4f546\"")
+
+      minifyEnabled true
+      shrinkResources true
+      // Config release-proguard
+      signingConfig signingConfigs.release
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      applicationVariants.all { variant -> appendVersionNameVersionCode(variant) }
+    }
+  }
+
+  packagingOptions {
+    exclude 'META-INF/rxjava.properties'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  androidExtensions {
+    experimental = true
+  }
+
+  dataBinding {
+    enabled = true
+  }
+
+  kapt {
+    useBuildCache = true
+  }
+
+  kapt {
+    mapDiagnosticLocations = true
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
+
+  configurations.all {
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+  }
+  lintOptions {
+    disable 'MissingTranslation'
+    check 'Interoperability'
+    disable 'GradleDependency'
+    abortOnError false
+    checkAllWarnings false
+    checkReleaseBuilds false
+    ignoreWarnings true
+    quiet true
+  }
+
+  bundle {
+    language {
+      // Specifies that the app bundle should not support
+      // configuration APKs for language resources. These
+      // resources are instead packaged with each base and
+      // dynamic feature APK.
+      enableSplit = false
+    }
+    density {
+      // This property is set to true by default.
+      enableSplit = true
+    }
+    abi {
+      // This property is set to true by default.
+      enableSplit = true
+    }
+  }
+
+  configurations.all {
+    exclude group: "io.reactivex", module: "rxjava"
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+  //Data binding
+  kapt "com.android.databinding:compiler:$gradlePluginVersion"
+
+  //App
+  implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
+  implementation 'androidx.cardview:cardview:1.0.0'
+  implementation 'com.google.android.material:material:1.0.0'
+  implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha06'
+  implementation 'androidx.percentlayout:percentlayout:1.0.0'
+  implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+  implementation 'androidx.annotation:annotation:1.1.0'
+
+  //Navigation
+  implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
+  implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
+
+  //Room
+  implementation 'android.arch.persistence.room:runtime:1.1.1'
+  kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+  //Paging
+  implementation "androidx.paging:paging-runtime:2.1.0"
+
+  //Retrofit and OkHttp
+  implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+  implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+  implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+  implementation 'androidx.room:room-rxjava2:2.1.0'
+  implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+  implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+
+  //RxJava, RxKotlin
+  implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+  implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+  implementation 'io.reactivex.rxjava2:rxjava:2.2.4'
+
+  //Coroutines
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
+
+  //Glide
+  implementation 'com.github.bumptech.glide:glide:4.8.0'
+  kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+  implementation "com.google.code.findbugs:jsr305:3.0.2"
+
+  //Ktx core
+  implementation 'androidx.core:core-ktx:1.0.2'
+
+  //Leak Canary
+  implementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
+
+  // Loading
+  implementation 'com.tuyenmonkey:mkloader:1.4.0'
+
+  //Koin
+  implementation 'org.koin:koin-androidx-viewmodel:2.0.0'
+
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'com.android.support.test:runner:1.0.2'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+@SuppressWarnings("GroovyAssignabilityCheck")
+def appendVersionNameVersionCode(variant) {
+  variant.outputs.all { output ->
+    def time = new Date().format("dd-MM-yyyy", TimeZone.getTimeZone("UTC"))
+    outputFileName = "${variant.name}-${variant.versionName}-${time}.apk"
+  }
+}

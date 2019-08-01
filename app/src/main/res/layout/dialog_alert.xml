@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/White"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/White"
+            app:cardCornerRadius="@dimen/dp_10"
+            app:cardElevation="@dimen/dp_4"
+            app:cardUseCompatPadding="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:padding="10dp"
+                    android:text="Notice"
+                    android:textColor="@color/K_222222_black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    style="@style/AppTheme.TextViewBold"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/K_222222_black"
+                    android:textSize="@dimen/sp_14"
+                    style="@style/AppTheme.TextView"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:background="@color/md_grey_100"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnPositive"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:background="?android:selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/action_ok_en"
+                    android:textColor="@color/K_222222_black"
+                    android:textSize="@dimen/sp_14"
+                    style="@style/AppTheme.TextView"
+                    />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+</layout>
