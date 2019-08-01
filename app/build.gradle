@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 apply from: '../autodimension.gradle'
 
-def APP_ID = "com.cashless.selforder"
+def APP_ID = "com.template.app"
 
 android {
 
@@ -26,9 +26,9 @@ android {
   signingConfigs {
     release {
       storeFile file("../release_info/keystore")
-      storePassword "cashless.selforder"
-      keyAlias "selforder"
-      keyPassword "cashless.selforder"
+      storePassword "com.template.app"
+      keyAlias "com.template.app"
+      keyPassword "com.template.app"
     }
   }
 
@@ -46,7 +46,7 @@ android {
       applicationIdSuffix = ".dev"
       ext.enableCrashlytics = false
 
-      resValue "string", "app_name", "[Dev] Self Order"
+      resValue "string", "app_name", "[Dev] Base"
       // URL CONFIGS
       buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
 
@@ -65,7 +65,7 @@ android {
     staging {
       applicationIdSuffix = ".stg"
 
-      resValue "string", "app_name", "[Stg] Self Order"
+      resValue "string", "app_name", "[STG] Base"
       // URL CONFIGS
       buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
 
@@ -83,7 +83,7 @@ android {
     }
 
     release {
-      resValue "string", "app_name", "Self Order"
+      resValue "string", "app_name", "Base"
       // URL CONFIGS
       buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
 

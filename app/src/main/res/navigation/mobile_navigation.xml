@@ -7,7 +7,7 @@
     <!-- TODO STEP 1 -->
     <fragment
         android:id="@+id/tab1"
-        android:name="com.cashless.self_order.screen.user.UserFragment"
+        android:name="com.template.app.screen.user.UserFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_user">
 
@@ -21,7 +21,7 @@
     <!-- TODO STEP 2-->
     <fragment
         android:id="@+id/tab2"
-        android:name="com.cashless.self_order.screen.blank.BlankFragment"
+        android:name="com.template.app.screen.blank.BlankFragment"
         tools:layout="@layout/fragment_blank">
         <argument
             android:name="flowStepNumber"
@@ -35,7 +35,7 @@
     <!-- TODO STEP 3 -->
     <fragment
         android:id="@+id/tab3"
-        android:name="com.cashless.self_order.screen.userFavorite.UserFavoriteFragment"
+        android:name="com.template.app.screen.userFavorite.UserFavoriteFragment"
         tools:layout="@layout/fragment_user_favorite">
         <argument
             android:name="flowStepNumber"

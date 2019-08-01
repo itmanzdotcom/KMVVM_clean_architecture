@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-
-    <data>
-        <variable
-            name="viewModel"
-            type="com.cashless.self_order.screen.user.UserViewModel"
-            />
-    </data>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -24,14 +14,13 @@
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="@={viewModel.query}"
             style="@style/styleTextInput"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
 
-        <com.cashless.self_order.widget.superRecyclerView.SuperRecyclerView
+        <com.template.app.widget.superRecyclerView.SuperRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -42,5 +31,3 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>

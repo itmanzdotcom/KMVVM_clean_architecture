@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
     >
 
-    <data>
-        <variable
-            name="viewModel"
-            type="com.cashless.self_order.screen.splash.SplashActivityViewModel"
-            />
-    </data>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        >
-
-        <com.tuyenmonkey.mkloader.MKLoader
-            android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_50"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/dp_14"
-            app:mk_color="@color/white_text"
-            app:mk_type="TwinFishesSpinner"
-            />
-    </RelativeLayout>
-</layout>
+    <com.tuyenmonkey.mkloader.MKLoader
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dp_14"
+        app:mk_color="@color/white_text"
+        app:mk_type="TwinFishesSpinner"
+        />
+</RelativeLayout>
